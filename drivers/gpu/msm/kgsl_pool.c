@@ -22,10 +22,6 @@
 #include "kgsl_device.h"
 #include "kgsl_pool.h"
 
-#ifdef CONFIG_E404_ATTRIBUTES
-#include <linux/e404_attributes.h>
-#endif
-
 #define KGSL_MAX_POOLS 4
 #define KGSL_MAX_POOL_ORDER 8
 #define KGSL_MAX_RESERVED_PAGES 4096
@@ -96,12 +92,9 @@ _kgsl_pool_add_page(struct kgsl_page_pool *pool, struct page *p)
 		__free_pages(p, pool->pool_order);
 		return;
 	}
-#ifdef CONFIG_E404_ATTRIBUTES
-if (e404_data.kgsl_skip_zeroing == 0)
+
 	_kgsl_pool_zero_page(p, pool->pool_order);
-#else
-	_kgsl_pool_zero_page(p, pool->pool_order);
-#endif
+
 	spin_lock(&pool->list_lock);
 	list_add_tail(&p->lru, &pool->page_list);
 	pool->page_count++;
@@ -414,7 +407,6 @@ int kgsl_pool_alloc_page(int *page_size, struct page **pages,
 	}
 
 done:
-
 
 	for (j = 0; j < (*page_size >> PAGE_SHIFT); j++) {
 		p = nth_page(page, j);

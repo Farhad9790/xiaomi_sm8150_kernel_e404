@@ -25,13 +25,11 @@ bool early_lyb_pressure = false;
 
 int early_ir_type = 0;
 
-
 struct e404_attributes e404_data = {
     .effcpu                     = 0,
     .rom_type                   = 1,
     .dtbo_type                  = 0,
     .batt_profile               = 0,
-    .kgsl_skip_zeroing          = 0,
     .file_sync                  = 1,
     .panel_width                = 70,
     .panel_height               = 155,
@@ -120,12 +118,10 @@ E404_ATTR_RO(dtbo_type);
 E404_ATTR_RO(batt_profile);
 E404_ATTR_RO(panel_width);
 E404_ATTR_RO(panel_height);
-E404_ATTR_RW(kgsl_skip_zeroing);
 E404_ATTR_RW(file_sync);
 E404_ATTR_RW(fas);
 
 static struct attribute *e404_attrs[] = {
-    &kgsl_skip_zeroing_attr.attr,
     &file_sync_attr.attr,
     &fas_attr.attr,
     NULL,
