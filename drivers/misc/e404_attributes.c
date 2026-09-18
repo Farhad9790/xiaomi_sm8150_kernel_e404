@@ -30,7 +30,6 @@ struct e404_attributes e404_data = {
     .rom_type                   = 1,
     .dtbo_type                  = 0,
     .batt_profile               = 0,
-    .file_sync                  = 1,
     .panel_width                = 70,
     .panel_height               = 155,
     .effcpu                     = 1,
@@ -118,11 +117,9 @@ E404_ATTR_RO(dtbo_type);
 E404_ATTR_RO(batt_profile);
 E404_ATTR_RO(panel_width);
 E404_ATTR_RO(panel_height);
-E404_ATTR_RW(file_sync);
 E404_ATTR_RW(fas);
 
 static struct attribute *e404_attrs[] = {
-    &file_sync_attr.attr,
     &fas_attr.attr,
     NULL,
 };

@@ -13,7 +13,6 @@ struct e404_attributes {
     int rom_type;
     int dtbo_type;
     bool batt_profile;
-    bool file_sync;
     int panel_width;
     int panel_height;
     bool dtbo130;
